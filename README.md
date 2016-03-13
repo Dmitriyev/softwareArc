@@ -12,5 +12,9 @@
 - Собеседование и тестирование
 - Формирование учебного плана
 
+##Документы
+- [Диаграмма вариантов использования][usecases]
+
 [roles]: /docs/AboutRoles.md
 [processes]: /docs/AboutProcesses.md
+[usecases]: /docs/UseCases.png
