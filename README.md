@@ -21,4 +21,4 @@
 [processes]: /docs/AboutProcesses.md
 [usecases]: /docs/UseCases.png
 [variants]: /docs/Variants.md
-[сlasses]: /docs/Сlasses.png
+[сlasses]: /docs/Classes.png
