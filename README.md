@@ -15,8 +15,10 @@
 ##Документы
 - [Диаграмма вариантов использования][usecases]
 - [Варианты использования][variants]
+- [Диаграмма классов][сlases]
 
 [roles]: /docs/AboutRoles.md
 [processes]: /docs/AboutProcesses.md
 [usecases]: /docs/UseCases.png
 [variants]: /docs/Variants.md
+[сlases]: /docs/Сlases.png
