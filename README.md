@@ -19,6 +19,6 @@
 
 [roles]: /docs/AboutRoles.md
 [processes]: /docs/AboutProcesses.md
-[usecases]: /docs/UseCases.png
+[usecases]: /docs/UseCases.html
 [variants]: /docs/Variants.md
-[сlasses]: /docs/Classes.png
+[сlasses]: /docs/Classes.html
