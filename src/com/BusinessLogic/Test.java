@@ -3,16 +3,29 @@ package com.BusinessLogic;
 import java.util.Date;
 
 /**
-Тестирование
+РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ
  */
 
-public class Test {
-    private long id;
-    private Date m_date;
+public class Test extends Event {
     private TestTask m_task;
 
-    public Test(long id, Date date) {
-        this.id = id;
-        this.m_date = date;
+    public Test() {
+
+    }
+
+    public Test(long id) {
+        super(id);
+    }
+
+    public Test(long id, Date m_date) {
+        super(id, m_date);
+    }
+
+    public void setTask(TestTask m_task) {
+        this.m_task = m_task;
+    }
+
+    public TestTask getTask() {
+        return this.m_task;
     }
 }

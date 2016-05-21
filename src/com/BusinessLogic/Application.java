@@ -1,11 +1,10 @@
 package com.BusinessLogic;
 
 /**
-Заявление на поступление
+Р—Р°СЏРІР»РµРЅРёРµ
  */
 
 public class Application {
-//    private static long currentID = 0;
     private long id;
     private String studentName;
 
@@ -19,6 +18,6 @@ public class Application {
     }
 
     public String getName() {
-        return  this.studentName;
+        return this.studentName;
     }
 }

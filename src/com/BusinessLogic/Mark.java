@@ -1,13 +1,17 @@
 package com.BusinessLogic;
 
 /**
-Оценка за тестирование
+РћС†РµРЅРєР° Р·Р° С‚РµСЃС‚
  */
 
 public class Mark {
-    private int m_mark;
+    private int value;
 
     public Mark (int mark) {
-        this.m_mark = mark;
+        this.value = mark;
+    }
+
+    public int getValue() {
+        return this.value;
     }
 }

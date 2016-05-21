@@ -1,7 +1,7 @@
 package com.BusinessLogic;
 
 /**
-Личность
+ * Р›РёС‡РЅРѕСЃС‚СЊ
  */
 
 public class Person {
