@@ -20,7 +20,7 @@ public class HeadTeacher extends Person {
     }
 
     public void RegisterApplication(Application m_application) {
-        //TODO Регистрация заявления
+        m_application.register();
     }
 
     public TestTask createTestTask(long id, String text) {

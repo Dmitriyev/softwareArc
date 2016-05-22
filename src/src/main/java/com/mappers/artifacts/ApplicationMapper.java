@@ -11,28 +11,26 @@ import java.util.List;
 /**
  * Created by pitochka on 22.05.16.
  */
-public class ApplicationMappers implements Mapper<Application> {
+public class ApplicationMapper implements Mapper<Application> {
     private static Connection connection;
     private static Statement statement;
     private static PreparedStatement preparedStatement;
 
-    public ApplicationMappers(DataSource dataSource) throws SQLException {
+    public ApplicationMapper(DataSource dataSource) throws SQLException {
         connection = dataSource.getConnection();
     }
 
-    @Override
     public Application find(long id) throws SQLException {
-        String SQL_GETAPPLIACTION = "SELECT id,studentName FROM Applications WHERE id=?";
+        String SQL_GETAPPLIACTION = "SELECT id,studentName,registred FROM Applications WHERE id=?";
         preparedStatement = connection.prepareStatement(SQL_GETAPPLIACTION);
         preparedStatement.setLong(1, id);
         ResultSet resultSet = preparedStatement.executeQuery();
         Application m_application = new Application(resultSet.getLong("id"),
-                resultSet.getString("studentName"));
+                resultSet.getString("studentName"), resultSet.getBoolean("registred"));
 
         return m_application;
     }
 
-    @Override
     public List<Application> findAll() throws SQLException {
         String SQL_GETALLAPPLICATIONS = "SELECT * FROM Applications";
         preparedStatement = connection.prepareStatement(SQL_GETALLAPPLICATIONS);
@@ -40,32 +38,30 @@ public class ApplicationMappers implements Mapper<Application> {
         List<Application> resultList = new ArrayList<Application>();
         while(resultSet.next()) {
             Application m_application = new Application(resultSet.getLong("id"),
-                    resultSet.getString("studentName"));
+                    resultSet.getString("studentName"), resultSet.getBoolean("registred"));
             resultList.add(m_application);
         }
 
         return resultList;
     }
 
-    @Override
     public void insert(Application m_application) throws SQLException {
-        String SQL_INSERTAPPLICATION = "INSERT INTO Applications (id,studentName) VALUES(?,?)";
+        String SQL_INSERTAPPLICATION = "INSERT INTO Applications (studentName,registred) VALUES(?,?)";
         preparedStatement = connection.prepareStatement(SQL_INSERTAPPLICATION);
-        preparedStatement.setLong(1, m_application.getId());
-        preparedStatement.setString(2, m_application.getName());
+        preparedStatement.setString(1, m_application.getName());
+        preparedStatement.setBoolean(2, m_application.getStatus());
         preparedStatement.execute();
     }
 
-    @Override
     public void update(Application m_application) throws SQLException {
-        String SQL_UPDATEAPPLICATION = "UPDATE Applications SET studentName=? WHERE id=?";
+        String SQL_UPDATEAPPLICATION = "UPDATE Applications SET studentName=?,registred=? AND WHERE id=?";
         preparedStatement = connection.prepareStatement(SQL_UPDATEAPPLICATION);
-        preparedStatement.setLong(1, m_application.getId());
-        preparedStatement.setString(2, m_application.getName());
+        preparedStatement.setLong(3, m_application.getId());
+        preparedStatement.setString(1, m_application.getName());
+        preparedStatement.setBoolean(2, m_application.getStatus());
         preparedStatement.execute();
     }
 
-    @Override
     public void delete(long id) throws SQLException {
         String SQL_DELETEAPPLICATION = "DELETE FROM Applications WHERE id=?";
         preparedStatement = connection.prepareStatement(SQL_DELETEAPPLICATION);
@@ -73,7 +69,6 @@ public class ApplicationMappers implements Mapper<Application> {
         preparedStatement.execute();
     }
 
-    @Override
     public void closeConnection() throws SQLException {
         connection.close();
     }
