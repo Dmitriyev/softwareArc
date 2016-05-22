@@ -23,12 +23,13 @@ public class ApplicationMapper implements Mapper<Application> {
     public Application find(long id) throws SQLException {
         String SQL_GETAPPLIACTION = "SELECT id,studentName,registred FROM Applications WHERE id=?";
         preparedStatement = connection.prepareStatement(SQL_GETAPPLIACTION);
-        preparedStatement.setLong(1, id);
+        preparedStatement.setLong(1, Long.valueOf(id).intValue());
         ResultSet resultSet = preparedStatement.executeQuery();
-        Application m_application = new Application(resultSet.getLong("id"),
-                resultSet.getString("studentName"), resultSet.getBoolean("registred"));
-
-        return m_application;
+        if(resultSet.next())
+            return new Application(resultSet.getLong("id"),
+                    resultSet.getString("studentName"),
+                    resultSet.getBoolean("registred"));
+        return null;
     }
 
     public List<Application> findAll() throws SQLException {
@@ -38,7 +39,8 @@ public class ApplicationMapper implements Mapper<Application> {
         List<Application> resultList = new ArrayList<Application>();
         while(resultSet.next()) {
             Application m_application = new Application(resultSet.getLong("id"),
-                    resultSet.getString("studentName"), resultSet.getBoolean("registred"));
+                    resultSet.getString("studentName"),
+                    resultSet.getBoolean("registred"));
             resultList.add(m_application);
         }
 
@@ -54,7 +56,7 @@ public class ApplicationMapper implements Mapper<Application> {
     }
 
     public void update(Application m_application) throws SQLException {
-        String SQL_UPDATEAPPLICATION = "UPDATE Applications SET studentName=?,registred=? AND WHERE id=?";
+        String SQL_UPDATEAPPLICATION = "UPDATE Applications SET studentName=?,registred=? WHERE id=?";
         preparedStatement = connection.prepareStatement(SQL_UPDATEAPPLICATION);
         preparedStatement.setLong(3, m_application.getId());
         preparedStatement.setString(1, m_application.getName());
