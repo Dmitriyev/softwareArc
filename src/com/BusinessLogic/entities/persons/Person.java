@@ -1,4 +1,4 @@
-package com.BusinessLogic;
+package com.businesslogic.entities.persons;
 
 /**
  * Личность

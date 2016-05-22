@@ -1,4 +1,6 @@
-package com.BusinessLogic;
+package com.businesslogic.events;
+
+import com.businesslogic.entities.Preferences;
 
 import java.util.Date;
 

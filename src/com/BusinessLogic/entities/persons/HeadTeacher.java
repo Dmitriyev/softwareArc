@@ -1,5 +1,7 @@
-package com.BusinessLogic;
+package com.businesslogic.entities.persons;
 
+
+import com.businesslogic.entities.*;
 
 import java.util.Date;
 import java.util.List;

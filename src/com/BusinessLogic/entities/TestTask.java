@@ -1,4 +1,4 @@
-package com.BusinessLogic;
+package com.BusinessLogic.entities;
 
 /**
  Тестовое задание

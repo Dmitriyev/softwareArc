@@ -1,4 +1,6 @@
-package com.BusinessLogic;
+package com.businesslogic.entities.persons;
+
+import com.businesslogic.entities.*;
 
 /**
  Ученик

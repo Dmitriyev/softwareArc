@@ -1,4 +1,4 @@
-package com.BusinessLogic;
+package com.businesslogic.artifacts;
 
 /**
 Оценка за тест

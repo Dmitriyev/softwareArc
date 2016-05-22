@@ -1,4 +1,4 @@
-package com.BusinessLogic;
+package com.businesslogic.artifacts;
 
 /**
 Пожелание ученика касаемо личного учебного плана на текущий год
