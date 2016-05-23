@@ -5,13 +5,11 @@ package com.businesslogic.artifacts;
  */
 import com.mappers.artifacts.ApplicationMapper;
 import com.mappers.database.DataSourceGateway;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
+
 public class ApplicationTest {
     private static DataSourceGateway m_dataSourceGateway;
     private static ApplicationMapper m_applicationMapper;
@@ -22,15 +20,15 @@ public class ApplicationTest {
     public void setUp() throws Exception {
         m_dataSourceGateway = DataSourceGateway.getInstance();
         m_applicationMapper = new ApplicationMapper(m_dataSourceGateway.getDataSource());
-        m_application = new Application("Vasiliy Ivanov");
     }
 
     @Test
     public void testInsert() throws Exception {
+        m_application = new Application("Vasiliy Ivanov");
         m_applicationMapper.insert(m_application);
-        Application tmp = m_applicationMapper.findAll().get(0);
-        id = tmp.getId();
-        assert tmp.getName().equals("Vasiliy Ivanov");
+        id = m_application.getId();
+        assert m_applicationMapper.findAll().get(0) != null;
+        assert m_application.getName().equals("Vasiliy Ivanov");
     }
 
 

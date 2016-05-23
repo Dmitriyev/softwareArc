@@ -23,7 +23,7 @@ public class ApplicationMapper implements Mapper<Application> {
     public Application find(long id) throws SQLException {
         String SQL_GETAPPLIACTION = "SELECT id,studentName,registred FROM Applications WHERE id=?";
         preparedStatement = connection.prepareStatement(SQL_GETAPPLIACTION);
-        preparedStatement.setLong(1, Long.valueOf(id).intValue());
+        preparedStatement.setLong(1, id);
         ResultSet resultSet = preparedStatement.executeQuery();
         if(resultSet.next())
             return new Application(resultSet.getLong("id"),
