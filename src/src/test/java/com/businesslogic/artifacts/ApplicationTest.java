@@ -24,11 +24,11 @@ public class ApplicationTest {
 
     @Test
     public void testInsert() throws Exception {
-        m_application = new Application("Vasiliy Ivanov");
+        m_application = new Application(1);
         m_applicationMapper.insert(m_application);
         id = m_application.getId();
         assert m_applicationMapper.findAll().get(0) != null;
-        assert m_application.getName().equals("Vasiliy Ivanov");
+        assert m_application.getStatus() == true;
     }
 
 
@@ -43,7 +43,7 @@ public class ApplicationTest {
     }
 
     @Test public void testDelete() throws Exception {
-        m_applicationMapper.delete(id);
+        m_applicationMapper.delete(m_application);
         boolean failed = false;
         List<Application> all = m_applicationMapper.findAll();
         for (Application i : all) {

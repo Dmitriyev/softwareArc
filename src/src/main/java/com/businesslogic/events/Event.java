@@ -17,6 +17,10 @@ public class Event {
         this.id  = id;
     }
 
+    public Event(Date m_date) {
+        this.m_date  = m_date;
+    }
+
     public Event(long id, Date m_date) {
         this.id = id;
         this.m_date = m_date;

@@ -18,6 +18,10 @@ public class Person {
         this.name = name;
     }
 
+    public Person(String name) {
+        this.name = name;
+    }
+
     public long getId() {
         return this.id;
     }

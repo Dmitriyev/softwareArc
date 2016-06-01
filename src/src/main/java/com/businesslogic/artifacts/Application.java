@@ -6,21 +6,21 @@ package com.businesslogic.artifacts;
 
 public class Application {
     private long id;
-    private String studentName;
-    private boolean registred = false;
+    private long student_id;
+    private boolean registred;
 
-    public Application(long id, String name) {
-        this.studentName = name;
+    public Application(long student_id) {
+        this.student_id = student_id;
+    }
+
+    public Application(long id, long student_id) {
+        this.student_id = student_id;
         this.id = id;
     }
 
-    public Application(String name) {
-        this.studentName = name;
-    }
-
-    public Application(long id, String name, boolean registred) {
+    public Application(long id, long student_id, boolean registred) {
+        this.student_id = student_id;
         this.id = id;
-        this.studentName = name;
         this.registred = registred;
     }
 
@@ -28,8 +28,8 @@ public class Application {
         return this.id;
     }
 
-    public String getName() {
-        return this.studentName;
+    public long getStudentId() {
+        return this.student_id;
     }
 
     public void register() {

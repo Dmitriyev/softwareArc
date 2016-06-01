@@ -6,11 +6,16 @@ package com.businesslogic.artifacts;
 
 public class TestTask {
     private long id;
+    private long test_id;
     private String taskText;
-    private String taskAnswer;
 
-    public TestTask (long id, String text) {
+    public TestTask (String text) {
+        this.taskText = text;
+    }
+
+    public TestTask (long id, long test_id, String text) {
         this.id = id;
+        this.test_id = test_id;
         this.taskText = text;
     }
 
@@ -21,14 +26,4 @@ public class TestTask {
     public String getText() {
         return this.taskText;
     }
-
-    public void setAnswer(String answer) {
-        this.taskAnswer = answer;
-    }
-
-    public String getAnswer() {
-        return this.taskAnswer;
-    }
-
-
 }

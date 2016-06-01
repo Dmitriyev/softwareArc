@@ -9,17 +9,30 @@ import java.util.Date;
  */
 
 public class Interview extends Event{
-    Preferences m_preferences;
+    private long student_id;
+    private String interviewerComments;
 
-    public Interview(long id, Date m_date) {
+    public Interview(long student_id, Date m_date) {
+        super(m_date);
+        this.student_id = student_id;
+    }
+
+    public Interview(long id, long student_id, Date m_date) {
         super(id, m_date);
+        this.student_id = student_id;
     }
 
-    public void setPreferences(Preferences m_preferences) {
-        this.m_preferences = m_preferences;
+    public Interview(long id, long student_id, Date m_date, String interviewerComments) {
+        super(id, m_date);
+        this.student_id = student_id;
+        this.interviewerComments = interviewerComments;
     }
 
-    public Preferences getM_preferences() {
-        return this.m_preferences;
+    public void setComments(String interviewerComments) {
+        this.interviewerComments = interviewerComments;
+    }
+
+    public String getComments() {
+        return this.interviewerComments;
     }
 }

@@ -11,6 +11,6 @@ public interface Mapper<T> {
     List<T> findAll() throws SQLException;
     void insert(T item) throws SQLException;
     void update(T item) throws SQLException;
-    void delete(long id) throws SQLException;
+    void delete(T item) throws SQLException;
     void closeConnection() throws SQLException;
 }

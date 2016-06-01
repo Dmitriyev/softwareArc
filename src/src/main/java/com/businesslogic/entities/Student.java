@@ -1,9 +1,6 @@
 package com.businesslogic.entities;
 
-import com.businesslogic.artifacts.Application;
-import com.businesslogic.artifacts.Mark;
-import com.businesslogic.artifacts.Preferences;
-import com.businesslogic.artifacts.TestTask;
+import com.businesslogic.artifacts.*;
 import com.businesslogic.events.Interview;
 import com.businesslogic.events.Test;
 
@@ -12,34 +9,45 @@ import com.businesslogic.events.Test;
  */
 
 public class Student extends Person {
-    private long applicationId;
-    private long taskId;
+    private Application m_application;
+    private TestAnswer m_answer;
     private Mark m_mark;
+    private boolean allowedToInterview;
+    private Preferences m_preferences;
+    private Plan m_plan;
+
+    public Student(String name) {
+        super(name);
+    }
 
     public Student(long id, String name) {
         super(id, name);
     }
 
-    public Application createApplication(long id) {
-        this.applicationId = id;
-        Application m_application = new Application(this.applicationId, this.getName());
+    public Application createApplication() {
+        m_application = new Application(this.getId());
         return m_application;
     }
 
-    public long getApplicationId() {
-        return this.applicationId;
+    public void setApplication(Application m_application) {
+        this.m_application = m_application;
     }
 
-    public void getTestTask(Test m_test) {
-        this.taskId = m_test.getTask().getId();
+    public Application getApplicationId() {
+        return this.m_application;
     }
 
-    public void setAnswer(TestTask m_task, String answer) {
-        m_task.setAnswer(answer);
+    public TestAnswer createAnswer(String text, long task_id) {
+        m_answer = new TestAnswer(this.getId(), task_id, text);
+        return m_answer;
     }
 
-    public long getTaskId() {
-        return this.taskId;
+    public void setAnswer(TestAnswer m_answer) {
+        this.m_answer = m_answer;
+    }
+
+    public TestAnswer getAnswer() {
+        return this.m_answer;
     }
 
     public void setMark(Mark m_mark) {
@@ -50,7 +58,32 @@ public class Student extends Person {
         return this.m_mark;
     }
 
-    public void CreatePreferences(Interview m_interview, String m_preferences) {
-        m_interview.setPreferences(new Preferences(m_preferences));
+    public void allowToInterview() {
+        allowedToInterview = true;
+    }
+
+    public boolean isAllowedToInterview() {
+        return this.allowedToInterview;
+    }
+
+    public Preferences CreatePreferences(String text) {
+        m_preferences = new Preferences(this.getId(), text);
+        return m_preferences;
+    }
+
+    public void setPreferences(Preferences m_preferences) {
+        this.m_preferences = m_preferences;
+    }
+
+    public Preferences getPreferences() {
+        return this.m_preferences;
+    }
+
+    public void setPlan(Plan m_plan) {
+        this.m_plan = m_plan;
+    }
+
+    public Plan getPlan() {
+        return this.m_plan;
     }
 }
