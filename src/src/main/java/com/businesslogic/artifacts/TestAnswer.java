@@ -30,4 +30,12 @@ public class TestAnswer {
     public String getText() {
         return this.answerText;
     }
+
+    public long getStudentId() {
+        return this.student_id;
+    }
+
+    public long getTaskId() {
+        return this.task_id;
+    }
 }

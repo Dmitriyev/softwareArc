@@ -20,11 +20,19 @@ public class Mark {
         this.value = mark;
     }
 
+    public void setValue(int mark) {
+        this.value = mark;
+    }
+
     public int getValue() {
         return this.value;
     }
 
     public long getId() {
         return this.id;
+    }
+
+    public long getStudentId() {
+        return this.student_id;
     }
 }

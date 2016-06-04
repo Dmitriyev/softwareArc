@@ -25,7 +25,7 @@ public class Student extends Person {
     }
 
     public Application createApplication() {
-        m_application = new Application(this.getId());
+        m_application = new Application(this.getId(), false);
         return m_application;
     }
 

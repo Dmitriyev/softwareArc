@@ -5,51 +5,40 @@ package com.businesslogic.artifacts;
  */
 import com.mappers.artifacts.ApplicationMapper;
 import com.mappers.database.DataSourceGateway;
+import com.repositories.artifacts.ApplicationRepository;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class ApplicationTest {
-    private static DataSourceGateway m_dataSourceGateway;
-    private static ApplicationMapper m_applicationMapper;
-    private static Application m_application;
-    private static long id;
+    private static ApplicationRepository m_repository;
 
     @Before
     public void setUp() throws Exception {
-        m_dataSourceGateway = DataSourceGateway.getInstance();
-        m_applicationMapper = new ApplicationMapper(m_dataSourceGateway.getDataSource());
+        m_repository = new ApplicationRepository();
     }
 
     @Test
-    public void testInsert() throws Exception {
-        m_application = new Application(1);
-        m_applicationMapper.insert(m_application);
-        id = m_application.getId();
-        assert m_applicationMapper.findAll().get(0) != null;
-        assert m_application.getStatus() == true;
+    public void testGetting() throws Exception, SQLException {
+        Application m_application = m_repository.getAll().get(0);
+        assert m_application.getStudentId() == 12;
+        assert !m_application.getStatus();
     }
 
 
     @Test
-    public void testRegister() throws Exception {
-        m_application = m_applicationMapper.findAll().get(0);
-        id = m_application.getId();
+    public void testUpdating() throws Exception, SQLException {
+        Application m_application = m_repository.getAll().get(0);
         m_application.register();
-        m_applicationMapper.update(m_application);
-        Application tmp = m_applicationMapper.find(id);
-        assert tmp.getStatus();
+        m_repository.update(m_application);
+        assert m_repository.getAll().get(0).getStatus();
     }
 
-    @Test public void testDelete() throws Exception {
-        m_applicationMapper.delete(m_application);
-        boolean failed = false;
-        List<Application> all = m_applicationMapper.findAll();
-        for (Application i : all) {
-            if (i.getId() == id)
-                failed = true;
-        }
-        assert !failed;
+    @After
+    public void testDelete() throws Exception, SQLException {
+        m_repository.delete(m_repository.getAll().get(0));
     }
 }

@@ -26,4 +26,8 @@ public class TestTask {
     public String getText() {
         return this.taskText;
     }
+
+    public long getTestId() {
+        return this.test_id;
+    }
 }

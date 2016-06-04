@@ -49,7 +49,6 @@ public class ApplicationMapper implements Mapper<Application> {
                     resultSet.getBoolean("registred"));
             resultList.add(m_application);
         }
-
         return resultList;
     }
 
@@ -57,7 +56,7 @@ public class ApplicationMapper implements Mapper<Application> {
         String SQL_INSERTAPPLICATION = "INSERT INTO Applications (student_id,registred) VALUES(?,?)";
         PreparedStatement preparedStatement;
         preparedStatement = connection.prepareStatement(SQL_INSERTAPPLICATION);
-        preparedStatement.setLong(1, m_application.getId());
+        preparedStatement.setLong(1, m_application.getStudentId());
         preparedStatement.setBoolean(2, m_application.getStatus());
         preparedStatement.execute();
     }
@@ -67,7 +66,7 @@ public class ApplicationMapper implements Mapper<Application> {
         PreparedStatement preparedStatement;
         preparedStatement = connection.prepareStatement(SQL_UPDATEAPPLICATION);
         preparedStatement.setLong(3, m_application.getId());
-        preparedStatement.setLong(1, m_application.getId());
+        preparedStatement.setLong(1, m_application.getStudentId());
         preparedStatement.setBoolean(2, m_application.getStatus());
         preparedStatement.execute();
     }

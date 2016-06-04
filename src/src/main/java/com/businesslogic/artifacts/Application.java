@@ -9,8 +9,9 @@ public class Application {
     private long student_id;
     private boolean registred;
 
-    public Application(long student_id) {
+    public Application(long student_id, boolean registred) {
         this.student_id = student_id;
+        this.registred = registred;
     }
 
     public Application(long id, long student_id) {
@@ -34,6 +35,10 @@ public class Application {
 
     public void register() {
         this.registred = true;
+    }
+
+    public void setStatus(boolean status) {
+        this.registred = status;
     }
 
     public boolean getStatus() {

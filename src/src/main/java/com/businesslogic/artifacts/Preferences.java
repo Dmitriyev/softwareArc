@@ -27,4 +27,8 @@ public class Preferences {
     public long getId() {
         return this.id;
     }
+
+    public long getStudentId() {
+        return this.student_id;
+    }
 }

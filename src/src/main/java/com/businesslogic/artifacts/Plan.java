@@ -33,4 +33,12 @@ public class Plan {
     public void validate() {
         this.validated = true;
     }
+
+    public long getStudentId() {
+        return this.student_id;
+    }
+
+    public boolean isValidated() {
+        return this.validated;
+    }
 }
