@@ -38,4 +38,8 @@ public class TestAnswer {
     public long getTaskId() {
         return this.task_id;
     }
+
+    public void setAnswer(String text) {
+        this.answerText = text;
+    }
 }

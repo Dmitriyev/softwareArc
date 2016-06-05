@@ -22,7 +22,7 @@ public class ApplicationTest {
     }
 
     @Test
-    public void testGetting() throws Exception, SQLException {
+    public void testGetting() throws Exception {
         Application m_application = m_repository.getAll().get(0);
         assert m_application.getStudentId() == 12;
         assert !m_application.getStatus();
@@ -30,7 +30,7 @@ public class ApplicationTest {
 
 
     @Test
-    public void testUpdating() throws Exception, SQLException {
+    public void testUpdating() throws Exception {
         Application m_application = m_repository.getAll().get(0);
         m_application.register();
         m_repository.update(m_application);
@@ -38,7 +38,8 @@ public class ApplicationTest {
     }
 
     @After
-    public void testDelete() throws Exception, SQLException {
+    public void testDelete() throws Exception {
         m_repository.delete(m_repository.getAll().get(0));
+        m_repository.disconnect();
     }
 }

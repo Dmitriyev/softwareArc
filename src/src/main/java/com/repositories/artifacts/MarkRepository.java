@@ -1,8 +1,6 @@
 package com.repositories.artifacts;
 
-import com.businesslogic.artifacts.Application;
 import com.businesslogic.artifacts.Mark;
-import com.mappers.artifacts.ApplicationMapper;
 import com.mappers.artifacts.MarkMapper;
 import com.mappers.database.DataSourceGateway;
 import com.repositories.Repository;

@@ -34,6 +34,10 @@ public class Plan {
         this.validated = true;
     }
 
+    public void setStatus(boolean status) {
+        this.validated = status;
+    }
+
     public long getStudentId() {
         return this.student_id;
     }

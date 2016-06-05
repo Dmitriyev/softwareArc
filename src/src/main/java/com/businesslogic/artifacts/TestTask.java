@@ -19,6 +19,14 @@ public class TestTask {
         this.taskText = text;
     }
 
+    public void setTestId(long id) {
+        this.test_id = id;
+    }
+
+    public void setTaskText(String text) {
+        this.taskText = text;
+    }
+
     public long getId() {
         return this.id;
     }
