@@ -27,7 +27,7 @@ public class PreferencesMapper implements Mapper<Preferences> {
     }
 
     public Preferences find(long id) throws SQLException {
-        String SQL_GETPREFERENCES = "SELECT id,student_id,preference_text FROM Preferences WHERE id=?";
+        String SQL_GETPREFERENCES = "SELECT id,student_id,preference_text FROM Preferences WHERE student_id=?";
         PreparedStatement preparedStatement;
         preparedStatement = connection.prepareStatement(SQL_GETPREFERENCES);
         preparedStatement.setLong(1, id);
@@ -64,20 +64,20 @@ public class PreferencesMapper implements Mapper<Preferences> {
     }
 
     public void update(Preferences m_preferences) throws SQLException {
-        String SQL_UPDATEPREFERENCES = "UPDATE Preferences SET student_id=?,preference_text=? WHERE id=?";
+        String SQL_UPDATEPREFERENCES = "UPDATE Preferences SET student_id=?,preference_text=? WHERE student_id=?";
         PreparedStatement preparedStatement;
         preparedStatement = connection.prepareStatement(SQL_UPDATEPREFERENCES);
-        preparedStatement.setLong(3, m_preferences.getId());
+        preparedStatement.setLong(3, m_preferences.getStudentId());
         preparedStatement.setLong(1, m_preferences.getStudentId());
         preparedStatement.setString(2, m_preferences.getText());
         preparedStatement.execute();
     }
 
     public void delete(Preferences m_preferences) throws SQLException {
-        String SQL_DELETEPREFERENCES = "DELETE FROM Preferences WHERE id=?";
+        String SQL_DELETEPREFERENCES = "DELETE FROM Preferences WHERE student_id=?";
         PreparedStatement preparedStatement;
         preparedStatement = connection.prepareStatement(SQL_DELETEPREFERENCES);
-        preparedStatement.setLong(1, m_preferences.getId());
+        preparedStatement.setLong(1, m_preferences.getStudentId());
         preparedStatement.execute();
     }
 

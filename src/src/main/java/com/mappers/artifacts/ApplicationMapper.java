@@ -25,7 +25,7 @@ public class ApplicationMapper implements Mapper<Application> {
     }
 
     public Application find(long id) throws SQLException {
-        String SQL_GETAPPLIACTION = "SELECT id,student_id,registred FROM Applications WHERE id=?";
+        String SQL_GETAPPLIACTION = "SELECT id,student_id,registred FROM Applications WHERE student_id=?";
         PreparedStatement preparedStatement;
         preparedStatement = connection.prepareStatement(SQL_GETAPPLIACTION);
         preparedStatement.setLong(1, id);
@@ -62,20 +62,20 @@ public class ApplicationMapper implements Mapper<Application> {
     }
 
     public void update(Application m_application) throws SQLException {
-        String SQL_UPDATEAPPLICATION = "UPDATE Applications SET student_id=?,registred=? WHERE id=?";
+        String SQL_UPDATEAPPLICATION = "UPDATE Applications SET student_id=?,registred=? WHERE student_id=?";
         PreparedStatement preparedStatement;
         preparedStatement = connection.prepareStatement(SQL_UPDATEAPPLICATION);
-        preparedStatement.setLong(3, m_application.getId());
+        preparedStatement.setLong(3, m_application.getStudentId());
         preparedStatement.setLong(1, m_application.getStudentId());
         preparedStatement.setBoolean(2, m_application.getStatus());
         preparedStatement.execute();
     }
 
     public void delete(Application m_application) throws SQLException {
-        String SQL_DELETEAPPLICATION = "DELETE FROM Applications WHERE id=?";
+        String SQL_DELETEAPPLICATION = "DELETE FROM Applications WHERE student_id=?";
         PreparedStatement preparedStatement;
         preparedStatement = connection.prepareStatement(SQL_DELETEAPPLICATION);
-        preparedStatement.setLong(1, m_application.getId());
+        preparedStatement.setLong(1, m_application.getStudentId());
         preparedStatement.execute();
     }
 

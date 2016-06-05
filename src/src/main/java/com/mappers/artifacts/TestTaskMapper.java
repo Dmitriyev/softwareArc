@@ -27,7 +27,7 @@ public class TestTaskMapper implements Mapper<TestTask> {
     }
 
     public TestTask find(long id) throws SQLException {
-        String SQL_GETTESTTASK = "SELECT id,test_id,task_text FROM TestTasks WHERE id=?";
+        String SQL_GETTESTTASK = "SELECT id,test_id,task_text FROM TestTasks WHERE test_id=?";
         PreparedStatement preparedStatement;
         preparedStatement = connection.prepareStatement(SQL_GETTESTTASK);
         preparedStatement.setLong(1, id);
@@ -64,20 +64,20 @@ public class TestTaskMapper implements Mapper<TestTask> {
     }
 
     public void update(TestTask m_task) throws SQLException {
-        String SQL_UPDATETESTTASK = "UPDATE TestTasks SET test_id=?,task_text=? WHERE id=?";
+        String SQL_UPDATETESTTASK = "UPDATE TestTasks SET test_id=?,task_text=? WHERE test_id=?";
         PreparedStatement preparedStatement;
         preparedStatement = connection.prepareStatement(SQL_UPDATETESTTASK);
-        preparedStatement.setLong(3, m_task.getId());
+        preparedStatement.setLong(3, m_task.getTestId());
         preparedStatement.setLong(1, m_task.getTestId());
         preparedStatement.setString(2, m_task.getText());
         preparedStatement.execute();
     }
 
     public void delete(TestTask m_task) throws SQLException {
-        String SQL_DELETETESTTASK = "DELETE FROM TestTasks WHERE id=?";
+        String SQL_DELETETESTTASK = "DELETE FROM TestTasks WHERE test_id=?";
         PreparedStatement preparedStatement;
         preparedStatement = connection.prepareStatement(SQL_DELETETESTTASK);
-        preparedStatement.setLong(1, m_task.getId());
+        preparedStatement.setLong(1, m_task.getTestId());
         preparedStatement.execute();
     }
 

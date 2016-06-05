@@ -27,7 +27,7 @@ public class TestAnswerMapper implements Mapper<TestAnswer> {
     }
 
     public TestAnswer find(long id) throws SQLException {
-        String SQL_GETTESTANSWER = "SELECT id,student_id,tets_task_id,answer_text FROM TestAnswers WHERE id=?";
+        String SQL_GETTESTANSWER = "SELECT id,student_id,tets_task_id,answer_text FROM TestAnswers WHERE student_id=?";
         PreparedStatement preparedStatement;
         preparedStatement = connection.prepareStatement(SQL_GETTESTANSWER);
         preparedStatement.setLong(1, id);
@@ -67,10 +67,10 @@ public class TestAnswerMapper implements Mapper<TestAnswer> {
     }
 
     public void update(TestAnswer m_answer) throws SQLException {
-        String SQL_UPDATETESTANSWER = "UPDATE TestAnswers SET student_id=?,tets_task_id=?,answer_text=? WHERE id=?";
+        String SQL_UPDATETESTANSWER = "UPDATE TestAnswers SET student_id=?,tets_task_id=?,answer_text=? WHERE student_id=?";
         PreparedStatement preparedStatement;
         preparedStatement = connection.prepareStatement(SQL_UPDATETESTANSWER);
-        preparedStatement.setLong(4, m_answer.getId());
+        preparedStatement.setLong(4, m_answer.getStudentId());
         preparedStatement.setLong(1, m_answer.getStudentId());
         preparedStatement.setLong(2, m_answer.getTaskId());
         preparedStatement.setString(3, m_answer.getText());
@@ -78,10 +78,10 @@ public class TestAnswerMapper implements Mapper<TestAnswer> {
     }
 
     public void delete(TestAnswer m_answer) throws SQLException {
-        String SQL_DELETETESTANSWER = "DELETE FROM TestAnswers WHERE id=?";
+        String SQL_DELETETESTANSWER = "DELETE FROM TestAnswers WHERE student_id=?";
         PreparedStatement preparedStatement;
         preparedStatement = connection.prepareStatement(SQL_DELETETESTANSWER);
-        preparedStatement.setLong(1, m_answer.getId());
+        preparedStatement.setLong(1, m_answer.getStudentId());
         preparedStatement.execute();
     }
 

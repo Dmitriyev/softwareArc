@@ -1,9 +1,7 @@
 package com.businesslogic.artifacts;
 
 import com.repositories.artifacts.PlanRepository;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 
 import java.sql.SQLException;
 
@@ -13,8 +11,8 @@ import java.sql.SQLException;
 public class PlanTest {
     private static PlanRepository m_repository;
 
-    @Before
-    public void setUp() throws Exception {
+    @BeforeClass
+    public static void setUp() throws Exception {
         m_repository = new PlanRepository();
     }
 
@@ -31,12 +29,14 @@ public class PlanTest {
     public void testUpdating() throws Exception, SQLException {
         Plan m_plan = m_repository.getAll().get(0);
         m_plan.validate();
-        m_repository.update(m_plan);
+        m_plan.setText("new test plan");
         assert m_repository.getAll().get(0).isValidated();
+        assert m_plan.getText().equals("new test plan");
     }
 
-    @After
-    public void testDelete() throws Exception, SQLException {
+    @AfterClass
+    public static void testDelete() throws Exception, SQLException {
+        m_repository.getAll().get(0).delete();
         m_repository.delete(m_repository.getAll().get(0));
         m_repository.disconnect();
     }

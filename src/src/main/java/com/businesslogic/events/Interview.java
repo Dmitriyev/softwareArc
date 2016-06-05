@@ -1,7 +1,5 @@
 package com.businesslogic.events;
 
-import com.businesslogic.artifacts.Preferences;
-
 import java.util.Date;
 
 /**

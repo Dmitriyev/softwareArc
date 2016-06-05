@@ -1,10 +1,7 @@
 package com.businesslogic.artifacts;
 
-import com.repositories.artifacts.PlanRepository;
 import com.repositories.artifacts.PreferencesRepository;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 
 import java.sql.SQLException;
 
@@ -14,8 +11,8 @@ import java.sql.SQLException;
 public class PreferencesTest {
     private static PreferencesRepository m_repository;
 
-    @Before
-    public void setUp() throws Exception {
+    @BeforeClass
+    public static void setUp() throws Exception {
         m_repository = new PreferencesRepository();
     }
 
@@ -26,8 +23,9 @@ public class PreferencesTest {
         assert m_preferences.getText().equals("test preferences");
     }
 
-    @After
-    public void testDelete() throws Exception, SQLException {
+    @AfterClass
+    public static void testDelete() throws Exception, SQLException {
+        m_repository.getAll().get(0).delete();
         m_repository.delete(m_repository.getAll().get(0));
         m_repository.disconnect();
     }

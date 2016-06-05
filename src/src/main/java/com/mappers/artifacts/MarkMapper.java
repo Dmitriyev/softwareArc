@@ -27,7 +27,7 @@ public class MarkMapper implements Mapper<Mark> {
     }
 
     public Mark find(long id) throws SQLException {
-        String SQL_GETMARK = "SELECT id,student_id,m_value FROM Marks WHERE id=?";
+        String SQL_GETMARK = "SELECT id,student_id,m_value FROM Marks WHERE student_id=?";
         PreparedStatement preparedStatement;
         preparedStatement = connection.prepareStatement(SQL_GETMARK);
         preparedStatement.setLong(1, id);
@@ -64,20 +64,20 @@ public class MarkMapper implements Mapper<Mark> {
     }
 
     public void update(Mark m_mark) throws SQLException {
-        String SQL_UPDATEMARK = "UPDATE Marks SET student_id=?,m_value=? WHERE id=?";
+        String SQL_UPDATEMARK = "UPDATE Marks SET student_id=?,m_value=? WHERE student_id=?";
         PreparedStatement preparedStatement;
         preparedStatement = connection.prepareStatement(SQL_UPDATEMARK);
-        preparedStatement.setLong(3, m_mark.getId());
+        preparedStatement.setLong(3, m_mark.getStudentId());
         preparedStatement.setLong(1, m_mark.getStudentId());
         preparedStatement.setInt(2, m_mark.getValue());
         preparedStatement.execute();
     }
 
     public void delete(Mark m_mark) throws SQLException {
-        String SQL_DELETEMARK = "DELETE FROM Marks WHERE id=?";
+        String SQL_DELETEMARK = "DELETE FROM Marks WHERE student_id=?";
         PreparedStatement preparedStatement;
         preparedStatement = connection.prepareStatement(SQL_DELETEMARK);
-        preparedStatement.setLong(1, m_mark.getId());
+        preparedStatement.setLong(1, m_mark.getStudentId());
         preparedStatement.execute();
     }
 

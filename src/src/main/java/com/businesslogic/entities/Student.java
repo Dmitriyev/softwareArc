@@ -4,6 +4,9 @@ import com.businesslogic.artifacts.*;
 import com.businesslogic.events.Interview;
 import com.businesslogic.events.Test;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
 /**
  Ученик
  */
@@ -24,7 +27,7 @@ public class Student extends Person {
         super(id, name);
     }
 
-    public Application createApplication() {
+    public Application createApplication() throws SQLException, IOException{
         m_application = new Application(this.getId(), false);
         return m_application;
     }
@@ -37,7 +40,7 @@ public class Student extends Person {
         return this.m_application;
     }
 
-    public TestAnswer createAnswer(String text, long task_id) {
+    public TestAnswer createAnswer(String text, long task_id) throws SQLException, IOException{
         m_answer = new TestAnswer(this.getId(), task_id, text);
         return m_answer;
     }
@@ -66,7 +69,7 @@ public class Student extends Person {
         return this.allowedToInterview;
     }
 
-    public Preferences CreatePreferences(String text) {
+    public Preferences CreatePreferences(String text) throws SQLException, IOException{
         m_preferences = new Preferences(this.getId(), text);
         return m_preferences;
     }

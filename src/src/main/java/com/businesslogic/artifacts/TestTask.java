@@ -1,5 +1,12 @@
 package com.businesslogic.artifacts;
 
+import com.mappers.artifacts.TestAnswerMapper;
+import com.mappers.artifacts.TestTaskMapper;
+import com.mappers.database.DataSourceGateway;
+
+import java.io.IOException;
+import java.sql.SQLException;
+
 /**
  Тестовое задание
  */
@@ -9,8 +16,12 @@ public class TestTask {
     private long test_id;
     private String taskText;
 
-    public TestTask (String text) {
+    private static TestTaskMapper m_testTaskMapper;
+
+    public TestTask (String text) throws SQLException, IOException {
         this.taskText = text;
+        m_testTaskMapper = new TestTaskMapper(DataSourceGateway.getInstance().getDataSource());
+        m_testTaskMapper.insert(this);
     }
 
     public TestTask (long id, long test_id, String text) {
@@ -19,12 +30,18 @@ public class TestTask {
         this.taskText = text;
     }
 
-    public void setTestId(long id) {
-        this.test_id = id;
+    public void setTaskText(String text) throws SQLException {
+        this.taskText = text;
+        m_testTaskMapper.update(this);
     }
 
-    public void setTaskText(String text) {
-        this.taskText = text;
+    public void setTestId(long id) throws SQLException {
+        this.test_id = id;
+        m_testTaskMapper.update(this);
+    }
+
+    public void delete() throws SQLException {
+        m_testTaskMapper.delete(this);
     }
 
     public long getId() {

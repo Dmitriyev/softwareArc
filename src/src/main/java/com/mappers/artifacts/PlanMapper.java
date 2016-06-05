@@ -27,7 +27,7 @@ public class PlanMapper implements Mapper<Plan> {
     }
 
     public Plan find(long id) throws SQLException {
-        String SQL_GETPLAN = "SELECT id,student_id,plan_text,validated FROM Plans WHERE id=?";
+        String SQL_GETPLAN = "SELECT id,student_id,plan_text,validated FROM Plans WHERE student_id=?";
         PreparedStatement preparedStatement;
         preparedStatement = connection.prepareStatement(SQL_GETPLAN);
         preparedStatement.setLong(1, id);
@@ -67,10 +67,10 @@ public class PlanMapper implements Mapper<Plan> {
     }
 
     public void update(Plan m_plan) throws SQLException {
-        String SQL_UPDATEPLAN = "UPDATE Plans SET student_id=?,plan_text=?,validated=? WHERE id=?";
+        String SQL_UPDATEPLAN = "UPDATE Plans SET student_id=?,plan_text=?,validated=? WHERE student_id=?";
         PreparedStatement preparedStatement;
         preparedStatement = connection.prepareStatement(SQL_UPDATEPLAN);
-        preparedStatement.setLong(4, m_plan.getId());
+        preparedStatement.setLong(4, m_plan.getStudentId());
         preparedStatement.setLong(1, m_plan.getStudentId());
         preparedStatement.setString(2, m_plan.getText());
         preparedStatement.setBoolean(3, m_plan.isValidated());
@@ -78,10 +78,10 @@ public class PlanMapper implements Mapper<Plan> {
     }
 
     public void delete(Plan m_plan) throws SQLException {
-        String SQL_DELETEPLAN = "DELETE FROM Plans WHERE id=?";
+        String SQL_DELETEPLAN = "DELETE FROM Plans WHERE student_id=?";
         PreparedStatement preparedStatement;
         preparedStatement = connection.prepareStatement(SQL_DELETEPLAN);
-        preparedStatement.setLong(1, m_plan.getId());
+        preparedStatement.setLong(1, m_plan.getStudentId());
         preparedStatement.execute();
     }
 
